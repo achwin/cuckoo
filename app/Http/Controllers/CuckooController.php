@@ -74,6 +74,7 @@ class CuckooController extends Controller
 		    	$bestFitnessComparedRoutes = $this->getBestFitness($comparedRoutes);
 		    	$bestFitnessPosition = array_search($bestFitnessComparedRoutes, $comparedRoutes);
 		    	$bestRoute['Iterasi'.$i][$bestFitnessPosition] = $bestFitnessComparedRoutes;
+		    	$optimalRoute = $bestRoute['Iterasi'.$i][$bestFitnessPosition]['decoded'];
 		    	if ($best > $bestRoute['Iterasi'.$i][$bestFitnessPosition]['decoded']['fitness']) {
 		    		$best = $bestRoute['Iterasi'.$i][$bestFitnessPosition]['decoded']['fitness'];
 		    		$optimalRoute = $bestRoute['Iterasi'.$i][$bestFitnessPosition]['decoded'];
