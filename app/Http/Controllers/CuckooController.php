@@ -74,16 +74,16 @@ class CuckooController extends Controller
 		    	$bestFitnessComparedRoutes = $this->getBestFitness($comparedRoutes);
 		    	$bestFitnessPosition = array_search($bestFitnessComparedRoutes, $comparedRoutes);
 		    	$bestRoute['Iterasi'.$i][$bestFitnessPosition] = $bestFitnessComparedRoutes;
-		    	$optimalRoute = $bestRoute['Iterasi'.$i][$bestFitnessPosition]['decoded'];
 		    	if ($best > $bestRoute['Iterasi'.$i][$bestFitnessPosition]['decoded']['fitness']) {
 		    		$best = $bestRoute['Iterasi'.$i][$bestFitnessPosition]['decoded']['fitness'];
 		    		$optimalRoute = $bestRoute['Iterasi'.$i][$bestFitnessPosition]['decoded'];
 		    	}
+		    	$optimalRoute = $bestRoute['Iterasi'.$i][$bestFitnessPosition]['decoded'];
 		    	$routesWithFitness = $comparedRoutes;
 		    	// var_dump($best);
 		    }
 		    $results['Iterasi '.$p['iterasi'].' Popsize '.$p['popsize']]['rute'] = $optimalRoute;
-		    $results['Iterasi '.$p['iterasi'].' Popsize '.$p['popsize']]['optimal'] = $best;
+		    $results['Iterasi '.$p['iterasi'].' Popsize '.$p['popsize']]['optimal'] = $optimalRoute['fitness'];
     	}
     	\Excel::create('Cukcoo ('.date('d-m-Y').')', function($excel) use($results){
                 $excel->sheet('sheet', function($sheet) use($results){
